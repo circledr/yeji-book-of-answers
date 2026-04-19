@@ -2,18 +2,23 @@
    全局 & CSS 变量
 ───────────────────────────────────────── */
 :root {
-  --bg:           #F8F4EE;          /* 暖米色页面背景 */
-  --text-dark:    #1A1410;          /* 主文字色 */
-  --text-brown:   #6B4F3A;          /* 副标题暖棕 */
-  --btn-bg:       #E8DDD0;          /* "打开"按钮填充 */
-  --btn-text:     #1A1410;
-  --nav-border:   rgba(0,0,0,0.10); /* 导航按钮描边 */
-  --input-bg:     #F2EEE8;          /* 输入框背景 */
-  --input-border: rgba(0,0,0,0.10); /* 输入框虚线描边 */
-  --input-ph:     #AEAEAE;          /* placeholder 文字 */
+  --bg:           #F8F4EE;
+  --text-dark:    #1A1410;
+  --text-brown:   #6B4F3A;
+  --btn-bg:       #E8DDD0;
+  --input-bg:     #F2EEE8;
+  --input-ph:     #AEAEAE;
 
-  /* 通用微投影（所有按钮共用） */
-  --shadow-btn: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  /* 导航/输入框描边：黑色10%透明度 */
+  --border-subtle: rgba(0, 0, 0, 0.10);
+
+  /* 通用按钮投影 */
+  --shadow-btn:      0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  /* 打开按钮投影（加深10%） */
+  --shadow-btn-open: 0 3px 10px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.07);
+
+  /* 统一按钮圆角 */
+  --radius-btn: 14px;
 }
 
 * {
@@ -33,6 +38,9 @@ body {
 
 /* ─────────────────────────────────────────
    页面容器
+   padding-top 模拟 iPhone 状态栏高度（44px）
+   加 8px 视觉呼吸空间 = 52px
+   在真实 iPhone 上用 safe-area-inset-top 替代
 ───────────────────────────────────────── */
 .page {
   background-color: var(--bg);
@@ -42,7 +50,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 28px 48px;
+  padding: 52px 28px 48px;
+}
+
+/* 真实 iPhone 上：尊重刘海/灵动岛高度 */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .page {
+    padding-top: max(52px, env(safe-area-inset-top));
+  }
 }
 
 
@@ -54,7 +69,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0 12px;
+  padding-bottom: 12px;
 }
 
 .nav-btn {
@@ -62,8 +77,8 @@ body {
   align-items: center;
   gap: 6px;
   background: transparent;
-  border: 1.5px solid var(--nav-border);
-  border-radius: 20px;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-btn);   /* 统一弧度 */
   padding: 7px 14px;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
@@ -106,7 +121,6 @@ body {
   margin-bottom: 22px;
 }
 
-/* "YEJI's" — Irish Grover：手写感粗衬线，品牌主角 */
 .title-yeji {
   font-family: 'Irish Grover', cursive;
   font-size: 76px;
@@ -115,7 +129,6 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* "Book of Answers" — Kranky：轻盈手绘衬线，与上行对比 */
 .title-boa {
   font-family: 'Kranky', cursive;
   font-size: 36px;
@@ -142,6 +155,9 @@ body {
 
 /* ─────────────────────────────────────────
    输入框
+   用 SVG background-image 实现可控间距的虚线框
+   stroke-dasharray="5 9"：5px实线 + 9px间隔
+   比默认 dashed 松散约30%
 ───────────────────────────────────────── */
 .input-wrapper {
   width: 100%;
@@ -152,7 +168,10 @@ body {
   width: 100%;
   padding: 14px 18px;
   background-color: var(--input-bg);
-  border: 1.5px dashed var(--input-border);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='black' stroke-opacity='0.10' stroke-width='1.5' stroke-dasharray='5 9' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;                      /* 原生边框关掉，用SVG替代 */
   border-radius: 12px;
   font-family: 'Noto Serif SC', serif;
   font-size: 13px;
@@ -197,19 +216,22 @@ body {
 
 /* ─────────────────────────────────────────
    打开按钮
+   - 缩小约25%（padding + 字号）
+   - 文字改为副标题棕色
+   - 投影加深10%
 ───────────────────────────────────────── */
 .open-btn {
   background-color: var(--btn-bg);
-  color: var(--btn-text);
+  color: var(--text-brown);          /* 棕色文字 */
   border: none;
-  border-radius: 14px;
-  padding: 15px 72px;
+  border-radius: var(--radius-btn);  /* 统一弧度 */
+  padding: 11px 54px;                /* 原 15px/72px，缩小~25% */
   font-family: 'Noto Serif SC', serif;
-  font-size: 20px;
+  font-size: 17px;                   /* 原 20px */
   font-weight: 500;
   letter-spacing: 0.1em;
   cursor: default;
-  box-shadow: var(--shadow-btn);
+  box-shadow: var(--shadow-btn-open);
   margin-bottom: 44px;
 }
 
@@ -220,6 +242,17 @@ body {
 .footer {
   margin-top: auto;
   padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 分割线：比下方文字稍短 */
+.footer-divider {
+  width: 170px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.18);
+  margin-bottom: 10px;
 }
 
 .footer p {
@@ -229,6 +262,14 @@ body {
   opacity: 0.65;
   text-align: center;
   letter-spacing: 0.03em;
+}
+
+/* "Circle" 链接：继承颜色 + underline */
+.footer-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(0,0,0,0.35);
 }
 
 
@@ -245,5 +286,6 @@ body {
     border-radius: 40px;
     min-height: auto;
     box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+    padding-top: 52px; /* 桌面端固定，不走 safe-area */
   }
 }
