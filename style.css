@@ -1,0 +1,249 @@
+/* ─────────────────────────────────────────
+   全局 & CSS 变量
+───────────────────────────────────────── */
+:root {
+  --bg:           #F8F4EE;          /* 暖米色页面背景 */
+  --text-dark:    #1A1410;          /* 主文字色 */
+  --text-brown:   #6B4F3A;          /* 副标题暖棕 */
+  --btn-bg:       #E8DDD0;          /* "打开"按钮填充 */
+  --btn-text:     #1A1410;
+  --nav-border:   rgba(0,0,0,0.10); /* 导航按钮描边 */
+  --input-bg:     #F2EEE8;          /* 输入框背景 */
+  --input-border: rgba(0,0,0,0.10); /* 输入框虚线描边 */
+  --input-ph:     #AEAEAE;          /* placeholder 文字 */
+
+  /* 通用微投影（所有按钮共用） */
+  --shadow-btn: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #E8E2D8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+/* ─────────────────────────────────────────
+   页面容器
+───────────────────────────────────────── */
+.page {
+  background-color: var(--bg);
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 28px 48px;
+}
+
+
+/* ─────────────────────────────────────────
+   顶部导航
+───────────────────────────────────────── */
+.top-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 12px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid var(--nav-border);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-dark);
+  cursor: default;
+  box-shadow: var(--shadow-btn);
+}
+
+.nav-icon-img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.nav-caret {
+  font-size: 9px;
+  opacity: 0.6;
+}
+
+
+/* ─────────────────────────────────────────
+   主体内容区
+───────────────────────────────────────── */
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 28px;
+}
+
+
+/* ─────────────────────────────────────────
+   主标题
+───────────────────────────────────────── */
+.title-block {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* "YEJI's" — Irish Grover：手写感粗衬线，品牌主角 */
+.title-yeji {
+  font-family: 'Irish Grover', cursive;
+  font-size: 76px;
+  color: var(--text-dark);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+}
+
+/* "Book of Answers" — Kranky：轻盈手绘衬线，与上行对比 */
+.title-boa {
+  font-family: 'Kranky', cursive;
+  font-size: 36px;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+}
+
+
+/* ─────────────────────────────────────────
+   副标题
+───────────────────────────────────────── */
+.subtitle {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-brown);
+  text-align: center;
+  line-height: 2.0;
+  margin-bottom: 26px;
+}
+
+
+/* ─────────────────────────────────────────
+   输入框
+───────────────────────────────────────── */
+.input-wrapper {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.question-input {
+  width: 100%;
+  padding: 14px 18px;
+  background-color: var(--input-bg);
+  border: 1.5px dashed var(--input-border);
+  border-radius: 12px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  color: var(--text-dark);
+  outline: none;
+}
+
+.question-input::placeholder {
+  color: var(--input-ph);
+  font-style: italic;
+}
+
+
+/* ─────────────────────────────────────────
+   信封插画
+───────────────────────────────────────── */
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 36px;
+}
+
+.envelope-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 心形叠加：圆心在SVG内约 50.6% / 49.8% */
+.envelope-heart {
+  position: absolute;
+  left: 50.6%;
+  top: 49.8%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: var(--text-dark);
+  line-height: 1;
+  pointer-events: none;
+}
+
+
+/* ─────────────────────────────────────────
+   打开按钮
+───────────────────────────────────────── */
+.open-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 14px;
+  padding: 15px 72px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  cursor: default;
+  box-shadow: var(--shadow-btn);
+  margin-bottom: 44px;
+}
+
+
+/* ─────────────────────────────────────────
+   底部署名
+───────────────────────────────────────── */
+.footer {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.footer p {
+  font-family: 'Kranky', cursive;
+  font-size: 14px;
+  color: var(--text-dark);
+  opacity: 0.65;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+
+/* ─────────────────────────────────────────
+   Desktop 适配（> 430px）
+───────────────────────────────────────── */
+@media (min-width: 431px) {
+  body {
+    padding: 40px 0;
+    align-items: center;
+  }
+
+  .page {
+    border-radius: 40px;
+    min-height: auto;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+  }
+}
