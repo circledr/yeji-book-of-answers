@@ -16,7 +16,7 @@
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&family=Kranky&family=Roboto:wght@400;500&family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&family=Kranky&family=Roboto:wght@400;500&family=Noto+Serif+SC:wght@400;500&family=Noto+Serif+KR:wght@400&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -25,7 +25,7 @@
   <div class="page">
 
     <!-- ── 顶部导航 ── -->
-    <nav class="top-nav">
+    <nav id="top-nav" class="top-nav">
       <button class="nav-btn lang-btn">
         <img src="images/illustrations/globe.svg" alt="" class="nav-icon-img">
         <span>CN</span>
@@ -38,7 +38,7 @@
     </nav>
 
     <!-- ── 主体内容 ── -->
-    <main class="main-content">
+    <main id="landing-content" class="main-content">
 
       <!-- 主标题 -->
       <header class="title-block">
@@ -55,6 +55,7 @@
       <!-- 输入框 -->
       <div class="input-wrapper">
         <input
+          id="question-input"
           type="text"
           class="question-input"
           placeholder="/ 写下你的问题，或深呼吸，在心中默念"
@@ -69,9 +70,51 @@
       </div>
 
       <!-- 打开按钮 -->
-      <button class="open-btn">打开</button>
+      <button id="open-btn" class="open-btn">打开</button>
 
     </main>
+
+    <!-- ── 结果视图（初始隐藏） ── -->
+    <div id="result-view" class="result-view hidden">
+
+      <!-- result-inner：所有内容作为一个整体垂直居中 -->
+      <div class="result-inner">
+
+        <!-- 关闭按钮行 -->
+        <div class="result-header">
+          <button id="close-btn" class="close-btn">×</button>
+        </div>
+
+        <!-- 内容卡片 -->
+        <div class="result-card">
+          <!-- 用户问题：有输入时显示，无输入时隐藏 -->
+          <div id="user-question" class="user-question hidden">
+            <p id="question-text" class="question-text"></p>
+            <div class="card-divider"></div>
+          </div>
+          <!-- 编号 -->
+          <p id="bubble-number" class="bubble-number">No.01</p>
+          <!-- Bubble 截图 -->
+          <img id="bubble-img" class="bubble-img" src="" alt="YEJI的话">
+        </div>
+
+        <!-- 长按提示 -->
+        <p class="save-hint">[长按卡片，保存为图片]</p>
+
+        <!-- YEJI 语录 -->
+        <div class="yeji-quote">
+          <p class="yeji-quote-kr">남은 하루도 좋은 하루 보내기야🍀</p>
+          <p class="yeji-quote-cn">（剩下的一天也要美好地度过🍀）</p>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="result-buttons">
+          <button id="again-btn" class="result-btn">再翻一次</button>
+          <button id="ok-btn" class="result-btn">好~</button>
+        </div>
+
+      </div><!-- /result-inner -->
+    </div>
 
     <!-- ── 底部 ── -->
     <footer class="footer">
@@ -81,5 +124,6 @@
 
   </div>
 
+  <script src="script.js"></script>
 </body>
 </html>

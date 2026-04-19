@@ -274,6 +274,194 @@ body {
 
 
 /* ─────────────────────────────────────────
+   工具类
+───────────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+
+
+/* 结果视图激活时：page 锁定为一屏高，防止图片高度不同导致页面跳动
+   不设 overflow: hidden，避免裁断卡片的 box-shadow */
+.page.result-active {
+  height: 100dvh;
+  height: 100vh;
+}
+
+/* ─────────────────────────────────────────
+   结果视图
+───────────────────────────────────────── */
+.result-view {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 内容整体垂直居中的关键：margin: auto
+   内容短时上下 margin 均分 → 居中；
+   内容超出高度时 margin 归零 → result-view overflow 接管滚动 */
+.result-inner {
+  margin: auto;
+  padding: 20px 6px 28px;        /* 水平 6px 给卡片阴影留出渲染空间 */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 关闭按钮行 */
+.result-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.close-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--btn-bg);
+  border: none;
+  border-radius: var(--radius-btn);
+  font-size: 20px;
+  color: var(--text-brown);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-btn-open);
+  line-height: 1;
+  margin-right: 10px;                /* 左移，防止靠边误触 */
+}
+
+/* 内容卡片 */
+.result-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+/* 用户问题区（有输入时显示） */
+.user-question {
+  padding: 18px 20px 0;
+  text-align: center;
+}
+
+.question-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px;
+  color: var(--text-brown);
+  line-height: 1.8;
+}
+
+/* 卡片内虚线分割：用 repeating-linear-gradient 控制密度
+   5px 实线 + 9px 间隔，与 landing page 输入框虚线一致 */
+.card-divider {
+  border: none;
+  height: 1.5px;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.12) 0px,
+    rgba(0, 0, 0, 0.12) 5px,
+    transparent 5px,
+    transparent 14px
+  );
+  margin: 14px 16px 0;
+}
+
+/* No.XX 编号：斜体，无 input 时上方留足空间 */
+.bubble-number {
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.28);
+  text-align: center;
+  padding: 28px 0 10px;            /* 无 input 时更宽松 */
+  letter-spacing: 0.08em;
+}
+
+.user-question + .bubble-number {
+  padding-top: 16px;               /* 有 input 时收紧 */
+}
+
+/* Bubble 截图：宽度与 card-divider 齐（两侧各缩进 16px） */
+.bubble-img {
+  display: block;
+  width: calc(100% - 32px);
+  height: auto;
+  margin: 0 16px 24px;             /* 底部加大留白 */
+  border-radius: 8px;
+}
+
+/* 长按提示 */
+.save-hint {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.32);
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+
+/* YEJI 语录 */
+.yeji-quote {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.yeji-quote-kr {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  color: var(--text-brown);
+  line-height: 1.9;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);
+}
+
+.yeji-quote-cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  color: var(--text-brown);
+  opacity: 0.85;
+  line-height: 1.8;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);
+}
+
+/* 操作按钮行 */
+.result-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.result-btn {
+  background-color: var(--btn-bg);
+  color: var(--text-brown);
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn-open);
+  padding: 11px 28px;
+}
+
+/* "再翻一次"：fill 与文字互换，作为主操作引导 */
+#again-btn {
+  background-color: var(--text-brown);
+  color: var(--btn-bg);
+}
+
+
+/* ─────────────────────────────────────────
    Desktop 适配（> 430px）
 ───────────────────────────────────────── */
 @media (min-width: 431px) {
