@@ -1,7 +1,8 @@
 // ─── 常量 ───────────────────────────────────────────────────
-const TOTAL_BUBBLES = 88;   // 修改这里就能支持更多截图
+const TOTAL_BUBBLES = 88;
 
 // ─── DOM 引用 ────────────────────────────────────────────────
+const page          = document.querySelector('.page');
 const topNav        = document.getElementById('top-nav');
 const landingContent= document.getElementById('landing-content');
 const openBtn       = document.getElementById('open-btn');
@@ -16,50 +17,72 @@ const bubbleImg     = document.getElementById('bubble-img');
 const againBtn      = document.getElementById('again-btn');
 const okBtn         = document.getElementById('ok-btn');
 
+const aboutView     = document.getElementById('about-view');
+const aboutBtn      = document.getElementById('about-btn');
+const aboutCloseBtn = document.getElementById('about-close-btn');
+
+// ─── 视图状态 ─────────────────────────────────────────────────
+
+let currentView = 'landing';  // 'landing' | 'result' | 'about'
+
+// 每个视图的配置：对应 DOM 元素、是否显示顶部导航、是否锁定页面高度
+const VIEW_CONFIG = {
+  landing: { el: landingContent, showNav: true,  resultActive: false },
+  result:  { el: resultView,     showNav: false, resultActive: true  },
+  about:   { el: aboutView,      showNav: false, resultActive: false },
+};
+
+// 统一切换函数：隐藏所有视图 → 显示目标视图 → 更新 nav / page 状态
+function showView(viewName) {
+  Object.values(VIEW_CONFIG).forEach(({ el }) => el.classList.add('hidden'));
+
+  const config = VIEW_CONFIG[viewName];
+  config.el.classList.remove('hidden');
+  topNav.classList.toggle('hidden', !config.showNav);
+  page.classList.toggle('result-active', config.resultActive);
+  window.scrollTo(0, 0);
+
+  currentView = viewName;
+}
+
 // ─── 核心逻辑 ─────────────────────────────────────────────────
 
-// 生成一个随机编号（1 ~ TOTAL_BUBBLES），返回编号和图片路径
 function getRandomBubble() {
   const num = Math.floor(Math.random() * TOTAL_BUBBLES) + 1;
   const filename = String(num).padStart(5, '0') + '.png';
   return { num, src: `images/bubblesCN/${filename}` };
 }
 
-// 更新卡片里的 bubble 图片和编号
 function drawBubble() {
   const { num, src } = getRandomBubble();
   bubbleImg.src = src;
   bubbleNumber.textContent = `No.${String(num).padStart(2, '0')}`;
 }
 
-// 切换到结果视图
 function showResult() {
   const question = questionInput.value.trim();
-
-  // 如果用户写了问题，显示引用框；否则隐藏
   if (question) {
-    questionText.textContent = `\u201C${question}\u201D`;  // "问题"
+    questionText.textContent = `\u201C${question}\u201D`;
     userQuestion.classList.remove('hidden');
   } else {
     userQuestion.classList.add('hidden');
   }
-
   drawBubble();
-
-  // 隐藏 landing，显示结果；锁定页面高度防止图片尺寸引起跳动
-  topNav.classList.add('hidden');
-  landingContent.classList.add('hidden');
-  resultView.classList.remove('hidden');
-  document.querySelector('.page').classList.add('result-active');
+  showView('result');
 }
 
-// 返回初始状态
 function goBack() {
-  resultView.classList.add('hidden');
-  topNav.classList.remove('hidden');
-  landingContent.classList.remove('hidden');
-  document.querySelector('.page').classList.remove('result-active');
-  questionInput.value = '';  // 清空输入框
+  questionInput.value = '';
+  showView('landing');
+}
+
+function showAbout() {
+  showView('about');
+}
+
+function closeAbout() {
+  questionInput.value = '';
+  showView('landing');
 }
 
 // ─── 事件绑定 ─────────────────────────────────────────────────
@@ -67,3 +90,5 @@ openBtn.addEventListener('click', showResult);
 againBtn.addEventListener('click', drawBubble);
 closeBtn.addEventListener('click', goBack);
 okBtn.addEventListener('click', goBack);
+aboutBtn.addEventListener('click', showAbout);
+aboutCloseBtn.addEventListener('click', closeAbout);

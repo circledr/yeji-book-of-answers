@@ -76,9 +76,9 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: transparent;
-  border: 1.5px solid var(--border-subtle);
-  border-radius: var(--radius-btn);   /* 统一弧度 */
+  background: var(--btn-bg);
+  border: none;
+  border-radius: var(--radius-btn);
   padding: 7px 14px;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
@@ -221,14 +221,14 @@ body {
    - 投影加深10%
 ───────────────────────────────────────── */
 .open-btn {
-  background-color: var(--btn-bg);
-  color: var(--text-brown);          /* 棕色文字 */
+  background-color: var(--text-brown);
+  color: var(--btn-bg);
   border: none;
-  border-radius: var(--radius-btn);  /* 统一弧度 */
-  padding: 11px 54px;                /* 原 15px/72px，缩小~25% */
+  border-radius: var(--radius-btn);
+  padding: 11px 36px;
   font-family: 'Noto Serif SC', serif;
-  font-size: 17px;                   /* 原 20px */
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 700;
   letter-spacing: 0.1em;
   cursor: default;
   box-shadow: var(--shadow-btn-open);
@@ -458,6 +458,81 @@ body {
 #again-btn {
   background-color: var(--text-brown);
   color: var(--btn-bg);
+}
+
+
+/* ─────────────────────────────────────────
+   About 视图
+───────────────────────────────────────── */
+.about-view {
+  width: 100%;
+}
+
+/* 顶栏：复用 top-nav 的 flex 布局 */
+.about-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+/* 正文区域 */
+.about-content {
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+/* 章节容器 */
+.about-section {
+  margin-bottom: 14px;
+}
+
+/* 章节标题：Noto Sans SC 加粗 */
+.about-section-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-dark);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* 标题下方细分割线 */
+.about-divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.10);
+  margin-bottom: 10px;
+}
+
+/* 正文段落 */
+.about-section p {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-brown);
+  opacity: 1;
+  margin-bottom: 5px;
+}
+
+.about-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* 邮件链接 */
+.about-link {
+  color: var(--text-brown);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* "for YEJI & MIDZY"：Irish Grover，深棕色 */
+.about-for {
+  font-family: 'Irish Grover', cursive !important;
+  font-size: 15px !important;
+  color: var(--text-brown) !important;
+  opacity: 1 !important;
+  letter-spacing: 0.02em;
 }
 
 
