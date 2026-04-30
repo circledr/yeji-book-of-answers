@@ -28,11 +28,7 @@
 }
 
 body {
-  background-color: #E8E2D8;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  background-color: var(--bg);
 }
 
 
@@ -45,8 +41,8 @@ body {
 .page {
   background-color: var(--bg);
   width: 100%;
-  max-width: 430px;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -281,12 +277,6 @@ body {
 }
 
 
-/* 结果视图激活时：page 锁定为一屏高，防止图片高度不同导致页面跳动
-   不设 overflow: hidden，避免裁断卡片的 box-shadow */
-.page.result-active {
-  height: 100dvh;
-  height: 100vh;
-}
 
 /* ─────────────────────────────────────────
    结果视图
@@ -297,8 +287,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* 内容整体垂直居中的关键：margin: auto
@@ -318,7 +306,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .close-btn {
@@ -539,16 +527,19 @@ body {
 /* ─────────────────────────────────────────
    Desktop 适配（> 430px）
 ───────────────────────────────────────── */
-@media (min-width: 431px) {
+@media (min-width: 768px) {
   body {
+    background-color: #E8E2D8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     padding: 40px 0;
-    align-items: center;
+    min-height: 100vh;
   }
 
   .page {
-    border-radius: 40px;
+    max-width: 480px;
     min-height: auto;
-    box-shadow: 0 12px 48px rgba(0,0,0,0.12);
-    padding-top: 52px; /* 桌面端固定，不走 safe-area */
+    padding-top: 52px;
   }
 }

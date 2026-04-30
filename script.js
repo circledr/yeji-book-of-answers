@@ -2,7 +2,6 @@
 const TOTAL_BUBBLES = 88;
 
 // ─── DOM 引用 ────────────────────────────────────────────────
-const page          = document.querySelector('.page');
 const topNav        = document.getElementById('top-nav');
 const landingContent= document.getElementById('landing-content');
 const openBtn       = document.getElementById('open-btn');
@@ -25,21 +24,20 @@ const aboutCloseBtn = document.getElementById('about-close-btn');
 
 let currentView = 'landing';  // 'landing' | 'result' | 'about'
 
-// 每个视图的配置：对应 DOM 元素、是否显示顶部导航、是否锁定页面高度
+// 每个视图的配置：对应 DOM 元素、是否显示顶部导航
 const VIEW_CONFIG = {
-  landing: { el: landingContent, showNav: true,  resultActive: false },
-  result:  { el: resultView,     showNav: false, resultActive: true  },
-  about:   { el: aboutView,      showNav: false, resultActive: false },
+  landing: { el: landingContent, showNav: true  },
+  result:  { el: resultView,     showNav: false },
+  about:   { el: aboutView,      showNav: false },
 };
 
-// 统一切换函数：隐藏所有视图 → 显示目标视图 → 更新 nav / page 状态
+// 统一切换函数：隐藏所有视图 → 显示目标视图 → 更新 nav 状态
 function showView(viewName) {
   Object.values(VIEW_CONFIG).forEach(({ el }) => el.classList.add('hidden'));
 
   const config = VIEW_CONFIG[viewName];
   config.el.classList.remove('hidden');
   topNav.classList.toggle('hidden', !config.showNav);
-  page.classList.toggle('result-active', config.resultActive);
   window.scrollTo(0, 0);
 
   currentView = viewName;
