@@ -16,22 +16,29 @@
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&family=Kranky&family=Roboto:wght@400;500&family=Noto+Serif+SC:wght@400;500&family=Noto+Serif+KR:wght@400&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&family=Kranky&family=Roboto:wght@400;500&family=Noto+Serif:ital,wght@0,400;0,500&family=Noto+Serif+SC:wght@400;500&family=Noto+Serif+KR:wght@400&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+KR:wght@400;500&family=Google+Sans+Flex:wght@300..700&display=swap" rel="stylesheet">
 
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-lang="CN">
 
   <div class="page">
 
     <!-- ── 顶部导航 ── -->
     <nav id="top-nav" class="top-nav">
-      <button class="nav-btn lang-btn">
-        <img src="images/illustrations/globe.svg" alt="" class="nav-icon-img">
-        <span>CN</span>
-        <span class="nav-caret">▾</span>
-      </button>
+      <div class="lang-dropdown" id="lang-drop-top">
+        <button class="nav-btn lang-btn">
+          <img src="images/illustrations/globe.svg" alt="" class="nav-icon-img">
+          <span class="lang-label">CN</span>
+          <span class="nav-caret">▾</span>
+        </button>
+        <div class="lang-menu">
+          <button class="lang-option active" data-lang-opt="CN">CN</button>
+          <button class="lang-option" data-lang-opt="EN">EN</button>
+          <button class="lang-option" data-lang-opt="KR">KR</button>
+        </div>
+      </div>
       <button id="about-btn" class="nav-btn about-btn">
         <img src="images/illustrations/Circle-Info.svg" alt="" class="nav-icon-img">
         <span>About</span>
@@ -48,10 +55,7 @@
       </header>
 
       <!-- 副标题 -->
-      <p class="subtitle">
-        此时此刻，你的困惑是什么呢？<br>
-        或许礼志的答案之书提前准备了回答
-      </p>
+      <p class="subtitle" data-i18n="subtitle">此时此刻，你的困惑是什么呢？<br>或许礼志的答案之书提前准备了回答</p>
 
       <!-- 输入框 -->
       <div class="input-wrapper">
@@ -59,6 +63,7 @@
           id="question-input"
           type="text"
           class="question-input"
+          data-i18n-placeholder="input-placeholder"
           placeholder="/ 写下你的问题，或深呼吸，在心中默念"
         >
       </div>
@@ -80,7 +85,7 @@
       </div>
 
       <!-- 打开按钮 -->
-      <button id="open-btn" class="open-btn">打开</button>
+      <button id="open-btn" class="open-btn" data-i18n="open-btn">打开</button>
 
     </main>
 
@@ -114,13 +119,13 @@
         <!-- YEJI 语录 -->
         <div class="yeji-quote">
           <p class="yeji-quote-kr">남은 하루도 좋은 하루 보내기야🍀</p>
-          <p class="yeji-quote-cn">（剩下的一天也要美好地度过🍀）</p>
+          <p class="yeji-quote-cn" data-i18n="quote-cn">（剩下的一天也要美好地度过🍀）</p>
         </div>
 
         <!-- 操作按钮 -->
         <div class="result-buttons">
-          <button id="again-btn" class="result-btn">再翻一次</button>
-          <button id="ok-btn" class="result-btn">好~</button>
+          <button id="again-btn" class="result-btn" data-i18n="again-btn">再翻一次</button>
+          <button id="ok-btn" class="result-btn" data-i18n="ok-btn">好~</button>
         </div>
 
       </div><!-- /result-inner -->
@@ -131,11 +136,18 @@
 
       <!-- 顶栏：语言切换（展示用）+ 关闭 -->
       <div class="about-nav">
-        <button class="nav-btn lang-btn">
-          <img src="images/illustrations/globe.svg" alt="" class="nav-icon-img">
-          <span>CN</span>
-          <span class="nav-caret">▾</span>
-        </button>
+        <div class="lang-dropdown" id="lang-drop-about">
+          <button class="nav-btn lang-btn">
+            <img src="images/illustrations/globe.svg" alt="" class="nav-icon-img">
+            <span class="lang-label">CN</span>
+            <span class="nav-caret">▾</span>
+          </button>
+          <div class="lang-menu">
+            <button class="lang-option active" data-lang-opt="CN">CN</button>
+            <button class="lang-option" data-lang-opt="EN">EN</button>
+            <button class="lang-option" data-lang-opt="KR">KR</button>
+          </div>
+        </div>
         <button id="about-close-btn" class="close-btn">×</button>
       </div>
 
@@ -143,38 +155,38 @@
       <div class="about-content">
 
         <section class="about-section">
-          <h2 class="about-section-title">🖤 关于YEJI's Book of Answers</h2>
+          <h2 class="about-section-title" data-i18n="about-s1-title">🖤 关于YEJI's Book of Answers</h2>
           <div class="about-divider"></div>
-          <p>从21年订阅泡泡开始，我就有把这些瞬间收集起来的习惯。就像往日记里撒一把花种子，慢慢地这些温暖的句子生长出来，点缀在其他图片之间，心情很低落的时候一口气读下来会有神奇的效用。</p>
-          <p>有天整理的时候我突然觉得这像是一本礼志写的答案之书，你可以随时翻开某一页，就像她说的"有我呢，加油的话语、安慰的话语，几百遍几千遍都可以说"，然后获得力量。所以我想试看用有趣的方式分享这个治愈心情的偏方。</p>
-          <p>我想这本答案之书不仅仅是给读者安慰或指引的答案，也是关于她的答案，关于她是什么样的人、在她心中你的意义的答案。</p>
+          <p data-i18n="about-s1-p1">从21年订阅泡泡开始，我就有把这些瞬间收集起来的习惯。就像往日记里撒一把花种子，慢慢地这些温暖的句子生长出来，点缀在其他图片之间，心情很低落的时候一口气读下来会有神奇的效用。</p>
+          <p data-i18n="about-s1-p2">有天整理的时候我突然觉得这像是一本礼志写的答案之书，你可以随时翻开某一页，就像她说的"有我呢，加油的话语、安慰的话语，几百遍几千遍都可以说"，然后获得力量。所以我想试看用有趣的方式分享这个治愈心情的偏方。</p>
+          <p data-i18n="about-s1-p3">我想这本答案之书不仅仅是给读者安慰或指引的答案，也是关于她的答案，关于她是什么样的人、在她心中你的意义的答案。</p>
         </section>
 
         <section class="about-section">
-          <h2 class="about-section-title">😆 关于答案</h2>
+          <h2 class="about-section-title" data-i18n="about-s2-title">😆 关于答案</h2>
           <div class="about-divider"></div>
-          <p>每个答案右下角标注了该条泡泡的日期，但因为工程量的原因问题并未一一核对，日期或存在误差。</p>
-          <p>同样出自工程量考量，因为每条答案都是依照泡泡原文人工重做的，所以目前优先了需要配合翻译的中英版本。韩语版本沿用了英文版的图片，还望包涵理解，非常感谢。</p>
-          <p>翻译非泡泡内置翻译。</p>
+          <p data-i18n="about-s2-p1">每个答案右下角标注了该条泡泡的日期，但因为工程量的原因问题并未一一核对，日期或存在误差。</p>
+          <p data-i18n="about-s2-p2">同样出自工程量考量，因为每条答案都是依照泡泡原文人工重做的，所以目前优先了需要配合翻译的中英版本。韩语版本沿用了英文版的图片，还望包涵理解，非常感谢。</p>
+          <p data-i18n="about-s2-p3">翻译非泡泡内置翻译。</p>
         </section>
 
         <section class="about-section">
-          <h2 class="about-section-title">🌼 声明</h2>
+          <h2 class="about-section-title" data-i18n="about-s3-title">🌼 声明</h2>
           <div class="about-divider"></div>
-          <p>YEJI's Book of Answers为饭制。泡泡内容版权为bubble for JYPnation和YEJI所有。</p>
+          <p data-i18n="about-s3-p1">YEJI's Book of Answers为饭制。泡泡内容版权为bubble for JYPnation和YEJI所有。</p>
         </section>
 
         <section class="about-section">
-          <h2 class="about-section-title">🍀 开发者notes</h2>
+          <h2 class="about-section-title" data-i18n="about-s4-title">🍀 开发者notes</h2>
           <div class="about-divider"></div>
-          <p>如有任何反馈、建议或是想分享使用体验，欢迎通过社媒联系我，或邮件 <a href="mailto:readings.0526@gmail.com" class="about-link">readings.0526@gmail.com</a></p>
-          <p>祝使用愉快。</p>
+          <p data-i18n="about-s4-p1">如有任何反馈、建议或是想分享使用体验，欢迎通过社媒联系我，或邮件 <a href="mailto:readings.0526@gmail.com" class="about-link">readings.0526@gmail.com</a></p>
+          <p data-i18n="about-s4-p2">祝使用愉快。</p>
         </section>
 
         <section class="about-section">
-          <h2 class="about-section-title">😎 版本</h2>
+          <h2 class="about-section-title" data-i18n="about-s5-title">😎 版本</h2>
           <div class="about-divider"></div>
-          <p>最后更新 2026.05.25</p>
+          <p data-i18n="about-s5-p1">最后更新 2026.05.25</p>
           <p class="about-for">Gift for YEJI's 26th Bday</p>
         </section>
 

@@ -96,6 +96,52 @@ body {
   opacity: 0.6;
 }
 
+/* ─────────────────────────────────────────
+   语言切换下拉菜单
+───────────────────────────────────────── */
+.lang-dropdown {
+  position: relative;
+}
+
+.lang-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  background: var(--btn-bg);
+  border-radius: var(--radius-btn);
+  box-shadow: var(--shadow-btn-open);
+  min-width: 72px;
+  overflow: hidden;
+}
+
+.lang-dropdown.open .lang-menu {
+  display: block;
+}
+
+.lang-option {
+  display: block;
+  width: 100%;
+  padding: 9px 16px;
+  background: none;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  color: var(--text-dark);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lang-option:active {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.lang-option.active {
+  color: var(--text-brown);
+  font-weight: 500;
+}
+
 
 /* ─────────────────────────────────────────
    主体内容区
@@ -203,7 +249,7 @@ body {
   height: 168px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  background-color: #C4956A;   /* 信封主色：暖驼色 */
+  background-color: #E8DDD0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
@@ -238,7 +284,7 @@ body {
   height: 0;
   border-left:  130px solid transparent;
   border-right: 130px solid transparent;
-  border-top:   93px  solid #A87858;   /* 最深：翻盖 */
+  border-top:   93px  solid #DFCFBC;
   pointer-events: none;
 }
 
@@ -261,9 +307,9 @@ body {
   width: 0;
   height: 0;
   z-index: 3;
-  border-left:   130px solid #D4A882;  /* 最浅：口袋侧翼 */
-  border-right:  130px solid #D4A882;
-  border-bottom: 84px  solid #C4956A;  /* 口袋底部 = 信封主色 */
+  border-left:   130px solid #E8DDD0;  /* 左右两片 */
+  border-right:  130px solid #E8DDD0;
+  border-bottom: 84px  solid #DFCFBC; /* 下片 = 上片同色 */
   border-top:    84px  solid transparent;
 }
 
@@ -602,6 +648,45 @@ body {
   letter-spacing: 0.02em;
 }
 
+
+/* ─────────────────────────────────────────
+   语言字体覆盖
+───────────────────────────────────────── */
+
+/* EN：About 正文用 Google Sans Flex，其他 UI 用 Noto Serif */
+[data-lang="EN"] .about-section-title,
+[data-lang="EN"] .about-section p {
+  font-family: 'Google Sans Flex', sans-serif;
+}
+[data-lang="EN"] .subtitle,
+[data-lang="EN"] .question-input,
+[data-lang="EN"] .open-btn,
+[data-lang="EN"] .result-btn,
+[data-lang="EN"] .yeji-quote-cn,
+[data-lang="EN"] .question-text,
+[data-lang="EN"] .save-hint {
+  font-family: 'Noto Serif', 'Noto Serif SC', serif;
+}
+
+/* KR：About 正文用 Noto Sans KR，其他 UI 用 Noto Serif KR */
+[data-lang="KR"] .about-section-title,
+[data-lang="KR"] .about-section p {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+[data-lang="KR"] .subtitle,
+[data-lang="KR"] .question-input,
+[data-lang="KR"] .open-btn,
+[data-lang="KR"] .result-btn,
+[data-lang="KR"] .yeji-quote-cn,
+[data-lang="KR"] .question-text,
+[data-lang="KR"] .save-hint {
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* KR：about-s4-p2 内容为空时隐藏 */
+[data-lang="KR"] [data-i18n="about-s4-p2"]:empty {
+  display: none;
+}
 
 /* ─────────────────────────────────────────
    Desktop 适配（> 430px）
