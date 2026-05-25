@@ -31,7 +31,7 @@ const TRANSLATIONS = {
   },
   EN: {
     'subtitle':        'What is weighing on your mind right now?<br>Maybe YEJI\'s Book of Answers has the reply ready for you',
-    'input-placeholder': '/ Write it down, whisper in your heart',
+    'input-placeholder': '/ Write it down, or whisper in your heart',
     'open-btn':        'Open',
     'quote-cn':        '（Let\'s make the rest of the day a lovely one🍀）',
     'again-btn':       'One more',
