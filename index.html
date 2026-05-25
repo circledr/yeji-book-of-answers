@@ -63,11 +63,20 @@
         >
       </div>
 
-      <!-- 信封插画（SVG导出 + 叠加心形） -->
+      <!-- 信封（CSS绘制，支持动画） -->
       <div class="envelope-wrapper">
-        <img src="images/illustrations/envelope.svg" alt="信封" class="envelope-img">
-        <!-- SVG里只有圆圈无心形，用CSS叠加在圆圈中心 -->
-        <span class="envelope-heart">♥</span>
+        <div id="envelope" class="envelope">
+          <!-- 翻盖（只有三角形，自己旋转） -->
+          <div class="env-flap-group" id="env-flap-group">
+            <div class="env-flap"></div>
+          </div>
+          <!-- seal 独立定位在翻盖尖角，单独做飞走动画 -->
+          <img src="images/illustrations/seal.svg" alt="" class="env-seal" id="env-seal">
+          <!-- 前景口袋层（V 形，遮住信纸底部） -->
+          <div class="env-pocket"></div>
+          <!-- 信纸 -->
+          <div class="env-letter"></div>
+        </div>
       </div>
 
       <!-- 打开按钮 -->
@@ -99,8 +108,8 @@
           <img id="bubble-img" class="bubble-img" src="" alt="YEJI的话">
         </div>
 
-        <!-- 长按提示 -->
-        <p class="save-hint">[长按卡片，保存为图片]</p>
+        <!-- 日期（JS 动态填入） -->
+        <p class="save-hint" id="save-hint"></p>
 
         <!-- YEJI 语录 -->
         <div class="yeji-quote">
@@ -165,7 +174,7 @@
         <section class="about-section">
           <h2 class="about-section-title">😎 版本</h2>
           <div class="about-divider"></div>
-          <p>最后更新 2026.04.19</p>
+          <p>最后更新 2026.05.25</p>
           <p class="about-for">Gift for YEJI's 26th Bday</p>
         </section>
 

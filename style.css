@@ -101,11 +101,13 @@ body {
    主体内容区
 ───────────────────────────────────────── */
 .main-content {
+  flex: 1;                     /* 占满 nav 和 footer 之间的剩余空间 */
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 28px;
+  justify-content: center;     /* 整体垂直居中 */
+  margin-top: 0;
 }
 
 
@@ -157,7 +159,7 @@ body {
 ───────────────────────────────────────── */
 .input-wrapper {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 42px;
 }
 
 .question-input {
@@ -182,31 +184,108 @@ body {
 
 
 /* ─────────────────────────────────────────
-   信封插画
+   信封（CSS 绘制，260 × 168 px）
+   perspective 在 wrapper 上，让 rotateX 产生 3D 透视感
 ───────────────────────────────────────── */
 .envelope-wrapper {
   position: relative;
   width: 100%;
   max-width: 320px;
   margin-bottom: 36px;
+  display: flex;
+  justify-content: center;
+  perspective: 600px;
 }
 
-.envelope-img {
-  width: 100%;
-  height: auto;
-  display: block;
+.envelope {
+  position: relative;
+  width: 260px;
+  height: 168px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #C4956A;   /* 信封主色：暖驼色 */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
-/* 心形叠加：圆心在SVG内约 50.6% / 49.8% */
-.envelope-heart {
+/* ── 翻盖组：flap 三角 + seal 一起旋转 ── */
+.env-flap-group {
   position: absolute;
-  left: 50.6%;
-  top: 49.8%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  color: var(--text-dark);
-  line-height: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  z-index: 5;
+  /* backface hidden：翻转后不显示背面内容 */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.45s ease, z-index 0s 0.45s;
+}
+
+/* 翻盖打开：绕顶边旋转 180°，延迟后沉到信纸后面 */
+.envelope.open .env-flap-group {
+  transform: rotateX(180deg);
+  z-index: 1;
+  transition: transform 0.45s ease, z-index 0s 0.45s;
+}
+
+/* CSS 三角形：翻盖（尖角朝下） */
+.env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left:  130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top:   93px  solid #A87858;   /* 最深：翻盖 */
   pointer-events: none;
+}
+
+/* 封蜡印章：独立于 flap-group，定位在翻盖尖角处 */
+.env-seal {
+  position: absolute;
+  width: 54px;
+  top: 60px;              /* 将印章中心落在翻盖尖角附近 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;             /* 高于 flap-group(5) 和 pocket(3) */
+}
+
+
+/* ── 口袋层：V 形三角，遮住信纸底部 ── */
+.env-pocket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 3;
+  border-left:   130px solid #D4A882;  /* 最浅：口袋侧翼 */
+  border-right:  130px solid #D4A882;
+  border-bottom: 84px  solid #C4956A;  /* 口袋底部 = 信封主色 */
+  border-top:    84px  solid transparent;
+}
+
+/* ── 信纸 ── */
+.env-letter {
+  position: absolute;
+  width: 88%;
+  height: 90%;
+  top: 5%;
+  left: 6%;
+  background: #FAFAFA;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  z-index: 2;
+  pointer-events: none;
+  transition: transform 0.4s ease;
+}
+
+/* 信纸滑出：等翻盖旋转结束后再动（delay = 翻盖时长） */
+.envelope.open .env-letter {
+  transform: translateY(-76px);
+  transition: transform 0.4s 0.45s ease;
 }
 
 

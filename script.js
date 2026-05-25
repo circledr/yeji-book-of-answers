@@ -1,11 +1,19 @@
 // ─── 常量 ───────────────────────────────────────────────────
 const TOTAL_BUBBLES = 88;
 
+// ─── 工具函数 ─────────────────────────────────────────────────
+function getFormattedDate() {
+  const d = new Date();
+  return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
+}
+
 // ─── DOM 引用 ────────────────────────────────────────────────
 const topNav        = document.getElementById('top-nav');
 const landingContent= document.getElementById('landing-content');
 const openBtn       = document.getElementById('open-btn');
 const questionInput = document.getElementById('question-input');
+const envelope      = document.getElementById('envelope');
+const envSeal       = document.getElementById('env-seal');
 
 const resultView    = document.getElementById('result-view');
 const closeBtn      = document.getElementById('close-btn');
@@ -13,12 +21,16 @@ const userQuestion  = document.getElementById('user-question');
 const questionText  = document.getElementById('question-text');
 const bubbleNumber  = document.getElementById('bubble-number');
 const bubbleImg     = document.getElementById('bubble-img');
+const saveHint      = document.getElementById('save-hint');
 const againBtn      = document.getElementById('again-btn');
 const okBtn         = document.getElementById('ok-btn');
 
 const aboutView     = document.getElementById('about-view');
 const aboutBtn      = document.getElementById('about-btn');
 const aboutCloseBtn = document.getElementById('about-close-btn');
+
+// ─── 动画状态 ─────────────────────────────────────────────────
+let isAnimating = false;
 
 // ─── 视图状态 ─────────────────────────────────────────────────
 
@@ -65,6 +77,7 @@ function showResult() {
   } else {
     userQuestion.classList.add('hidden');
   }
+  saveHint.textContent = `[${getFormattedDate()}]`;
   drawBubble();
   showView('result');
 }
@@ -83,8 +96,46 @@ function closeAbout() {
   showView('landing');
 }
 
+// ─── 信封打开动画 + 渐变过渡到结果页 ─────────────────────────
+// 时序：翻盖旋转(450ms) → 信纸滑出(delay 450ms + 400ms)
+//       → 淡出 landing(920ms 后) → 淡入 result
+function openEnvelope() {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  envelope.classList.add('open');
+
+  setTimeout(() => {
+    landingContent.style.transition = 'opacity 0.3s ease';
+    landingContent.style.opacity    = '0';
+    topNav.style.transition         = 'opacity 0.3s ease';
+    topNav.style.opacity            = '0';
+
+    setTimeout(() => {
+      envelope.classList.remove('open');
+      landingContent.style.transition = '';
+      landingContent.style.opacity    = '';
+      topNav.style.transition         = '';
+      topNav.style.opacity            = '';
+      isAnimating = false;
+
+      showResult();
+      resultView.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        resultView.style.transition = 'opacity 0.4s ease';
+        resultView.style.opacity    = '1';
+        setTimeout(() => {
+          resultView.style.transition = '';
+          resultView.style.opacity    = '';
+        }, 420);
+      }));
+    }, 300);
+  }, 920);
+}
+
 // ─── 事件绑定 ─────────────────────────────────────────────────
-openBtn.addEventListener('click', showResult);
+openBtn.addEventListener('click', openEnvelope);
+envSeal.addEventListener('click', openEnvelope);
 againBtn.addEventListener('click', drawBubble);
 closeBtn.addEventListener('click', goBack);
 okBtn.addEventListener('click', goBack);
