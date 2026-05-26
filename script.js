@@ -14,13 +14,13 @@ const TRANSLATIONS = {
     'again-btn':       '再翻一次',
     'ok-btn':          '好~',
     'about-s1-title':  '🖤 关于YEJI\'s Book of Answers',
-    'about-s1-p1':     '从21年订阅泡泡开始，我就有把这些瞬间收集起来的习惯。就像往日记里撒一把花种子，慢慢地这些温暖的句子生长出来，点缀在其他图片之间，心情很低落的时候一口气读下来会有神奇的效用。',
-    'about-s1-p2':     '有天整理的时候我突然觉得这像是一本礼志写的答案之书，你可以随时翻开某一页，就像她说的"有我呢，加油的话语、安慰的话语，几百遍几千遍都可以说"，然后获得力量。所以我想试看用有趣的方式分享这个治愈心情的偏方。',
-    'about-s1-p3':     '我想这本答案之书不仅仅是给读者安慰或指引的答案，也是关于她的答案，关于她是什么样的人、在她心中你的意义的答案。',
+    'about-s1-p1':     '从21年订阅礼志泡泡开始，我就有把这些瞬间收集起来的习惯。就像往截图相册里撒下一把花种子，慢慢地这些温暖的句子生长出来，点缀在其他图片之间，心情很低落的时候一口气读下来会有神奇的效用。',
+    'about-s1-p2':     '有天整理的时候我突然觉得这像是一本礼志写的答案之书，你可以随时翻开某一页，然后获得力量，就像她说的，"有我呢，加油的话语、安慰的话语，几百遍几千遍都可以说"。所以我想试着用有趣的方式分享这个治愈心情的偏方。',
+    'about-s1-p3':     '我想这本答案之书不仅仅是给读者安慰或指引的答案，也是关于她的答案。关于她是什么样的人、在她心中你的意义的答案。',
     'about-s2-title':  '😆 关于答案',
     'about-s2-p1':     '每个答案右下角标注了该条泡泡的日期，但因为工程量的原因问题并未一一核对，日期或存在误差。',
     'about-s2-p2':     '同样出自工程量考量，因为每条答案都是依照泡泡原文人工重做的，所以目前优先了需要配合翻译的中英版本。韩语版本沿用了英文版的图片，还望包涵理解，非常感谢。',
-    'about-s2-p3':     '翻译非泡泡内置翻译。',
+    'about-s2-p3':     '',
     'about-s3-title':  '🌼 声明',
     'about-s3-p1':     'YEJI\'s Book of Answers为饭制。泡泡内容版权为bubble for JYPnation和YEJI所有。',
     'about-s4-title':  '🍀 开发者notes',
@@ -37,13 +37,13 @@ const TRANSLATIONS = {
     'again-btn':       'One more',
     'ok-btn':          'Okay~',
     'about-s1-title':  '🖤 About YEJI\'s Book of Answers',
-    'about-s1-p1':     'Ever since I subscribed to Bubble in 2021, I\'ve had this habit of saving these little moments. It\'s like scattering a handful of flower seeds into a diary. Slowly, these warm words grow, tucked between other images in my Photos. On days when I feel really down, reading through them all at once brings a magic of healing.',
-    'about-s1-p2':     'One day while organizing them, it suddenly hit me: this is like a book of answers written by YEJI herself. You can flip to any page anytime, and just like she said, "I\'m here for you. Words of encouragement, words of comfort, I can say them hundreds, thousands of times" and you\'ll find strength. So I wanted to try sharing this little remedy for the heart in a fun way.',
-    'about-s1-p3':     'I think this book of answers isn\'t just about comfort or guidance for the reader. It\'s also an answer about her. About who she is, and what you mean to her.',
+    'about-s1-p1':     'Ever since I subscribed to YEJI\'s Bubble in 2021, I\'ve had this habit of collecting these little moments. It felt like scattering a handful of flower seeds into my screenshot album. Over time, these warm words have grown and blossomed, tucked between other photos. Whenever I\'m feeling really down, reading through them works like magic for me.',
+    'about-s1-p2':     'One day while organizing them, it suddenly hit me: this is like a Book of Answers written by YEJI herself. You can flip to any page anytime, and feel the love and strength. Just like she said, \'I\'m here for you. Words of encouragement, words of comfort, I can say them to you hundreds, thousands of times.\' So I wanted to try sharing this little remedy for the heart in a fun way.',
+    'about-s1-p3':     'I think this Book of Answers isn\'t just offer comfort or guidance to the reader. It also holds an answer about her. About who she is, and what you truly mean to her.',
     'about-s2-title':  '😆 About the Answers',
     'about-s2-p1':     'The date of each bubble message is marked in the bottom-right corner of every answer. However, due to the workload, I wasn\'t able to verify each one individually, so some dates may not be accurate.',
     'about-s2-p2':     'Also due to the workload, since each answer pic was manually recreated based on the original bubble, the Chinese and English versions, which both needed translation, were prioritized. The Korean ver uses the English ver images. Thank you so much for your understanding.',
-    'about-s2-p3':     'Translations are not from Bubble\'s built-in translation feature.',
+    'about-s2-p3':     '',
     'about-s3-title':  '🌼 Notice',
     'about-s3-p1':     'YEJI\'s Book of Answers is a fan-made project. All bubble content is copyrighted by bubble for JYPnation and YEJI.',
     'about-s4-title':  '🍀 Developer Notes',
@@ -53,8 +53,8 @@ const TRANSLATIONS = {
     'about-s5-p1':     'Last updated 2026.05.25',
   },
   KR: {
-    'subtitle':        '지금 이 순간, 어떤 질문이 마음속에 있나요?<br>어쩌면 예지의 답서가 이미 답을 준비해뒀을지도',
-    'input-placeholder': '질문을 적거나, 마음속으로 떠올려보세요',
+    'subtitle':        '지금 어떤 질문이 마음속에 있나요?<br>어쩌면 예지의 해답이 이미 준비해 뒀을지도 몰라요',
+    'input-placeholder': '/ 질문을 적거나, 마음속으로 떠올려보세요',
     'open-btn':        '열기',
     'quote-cn':        '\u00a0',   // non-breaking space: 保留排版空位
     'again-btn':       '다시 뽑기',
@@ -66,7 +66,7 @@ const TRANSLATIONS = {
     'about-s2-title':  '😆 답에 관하여',
     'about-s2-p1':     '각 답의 오른쪽 아래에는 해당 버블의 날짜가 적혀 있어요. 다만 작업량 때문에 하나하나 확인하지는 못해서, 날짜에 약간의 오차가 있을 수 있어요.',
     'about-s2-p2':     '마찬가지로 작업량을 고려해, 모든 답을 버블 원문을 바탕으로 직접 만들다 보니 번역이 필요한 중국어와 영어 버전을 우선했어요. 한국어 버전은 영어 버전 이미지를 그대로 사용하고 있어요. 너그러이 이해해주시면 감사하겠습니다.',
-    'about-s2-p3':     '번역은 버블 내장 번역 기능이 아닌 별도의 번역입니다.',
+    'about-s2-p3':     '',
     'about-s3-title':  '🌼 안내',
     'about-s3-p1':     'YEJI\'s Book of Answers는 팬메이드 프로젝트입니다. 모든 버블 콘텐츠의 저작권은 bubble for JYPnation과 YEJI에게 있습니다.',
     'about-s4-title':  '🍀 개발자 노트',
@@ -156,7 +156,7 @@ function showResult() {
   } else {
     userQuestion.classList.add('hidden');
   }
-  saveHint.textContent = `[${getFormattedDate()}]`;
+  saveHint.textContent = '';
   drawBubble();
   showView('result');
 }

@@ -665,8 +665,15 @@ body {
 [data-lang="EN"] .yeji-quote-cn,
 [data-lang="EN"] .question-text,
 [data-lang="EN"] .save-hint {
-  font-family: 'Noto Serif', 'Noto Serif SC', serif;
+  font-family: 'EB Garamond', serif;
 }
+[data-lang="EN"] .subtitle        { font-size: 16px; }
+[data-lang="EN"] .question-input  { font-size: 14px; }
+[data-lang="EN"] .open-btn        { font-size: 18px; }
+[data-lang="EN"] .result-btn      { font-size: 17px; }
+[data-lang="EN"] .yeji-quote-cn   { font-size: 14px; }
+[data-lang="EN"] .question-text   { font-size: 15px; }
+[data-lang="EN"] .save-hint       { font-size: 12px; }
 
 /* KR：About 正文用 Noto Sans KR，其他 UI 用 Noto Serif KR */
 [data-lang="KR"] .about-section-title,
